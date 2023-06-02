@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Connect Four Board</title>
+  <style>
+    .board {
+      display: flex;
+      flex-wrap: wrap;
+      width: 350px;
+    }
+    .cell {
+      width: 50px;
+      height: 50px;
+      border: 1px solid black;
+      box-sizing: border-box;
+    }
+    .cell.empty {
+      background-color: white;
+    }
+    .cell.player1 {
+      background-color: yellow;
+    }
+    .cell.player2 {
+      background-color: red;
+    }
+
+    .column {
+  display: inline-block;
+  vertical-align: top;
+}
+
+  </style>
+</head>
+<body>
+  <div id="connect-four-board"></div>
+  <textarea id="board-input" rows="6" cols="35"></textarea>
+  <button onclick="updateBoard()">Update Board</button>
+
+  <script>
+    // Function to display the Connect Four board
+    // Function to display the Connect Four board
+// Function to display the Connect Four board
+function displayBoard(board) {
+  const boardContainer = document.getElementById('connect-four-board');
+  boardContainer.innerHTML = '';
+
+  const numRows = board.length;
+  const numCols = board[0].length;
+
+  for (let col = 0; col < numCols; col++) {
+    const columnContainer = document.createElement('div');
+    columnContainer.className = 'column';
+
+    for (let row = numRows - 1; row >= 0; row--) {
+      const cell = document.createElement('div');
+      cell.className = 'cell';
+
+      if (board[row][col] === 1) {
+        cell.classList.add('player1');
+      } else if (board[row][col] === 2) {
+        cell.classList.add('player2');
+      } else {
+        cell.classList.add('empty');
+      }
+
+      columnContainer.appendChild(cell);
+    }
+
+    boardContainer.appendChild(columnContainer);
+  }
+}
+
+
+
+    // Function to update the board based on the input text
+    function updateBoard() {
+      const input = document.getElementById('board-input').value;
+      const rows = input.split('\n');
+      const board = rows.map(row => row.split(','));
+
+      displayBoard(board);
+    }
+
+    // Call the displayBoard function initially with the default board
+    displayBoard([
+  [
+    0, 0, 0, 0,
+    0, 0, 0
+  ],
+  [
+    0, 0, 0, 0,
+    0, 0, 0
+  ],
+  [
+    0, 0, 0, 0,
+    0, 0, 0
+  ],
+  [
+    0, 0, 0, 0,
+    0, 0, 1
+  ],
+  [
+    0, 0, 0, 0,
+    0, 0, 1
+  ],
+  [
+    2, 0, 0, 0,
+    2, 2, 1
+  ]
+].reverse());
+  </script>
+</body>
+</html>
